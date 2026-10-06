@@ -1,0 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const helmet_1 = __importDefault(require("helmet"));
+const auth_routes_1 = require("./routes/auth.routes");
+const user_routes_1 = require("./routes/user.routes");
+const errorHandler_1 = require("./middlewares/errorHandler");
+const task_routes_1 = require("./routes/task.routes");
+const admin_routes_1 = require("./routes/admin.routes");
+exports.app = (0, express_1.default)();
+exports.app.use((0, helmet_1.default)());
+exports.app.use((0, cors_1.default)());
+exports.app.use(express_1.default.json());
+exports.app.get("/health", (_req, res) => res.json({ status: "ok" }));
+exports.app.use("/auth", auth_routes_1.authRoutes);
+exports.app.use("/users", user_routes_1.userRoutes);
+exports.app.use("/tasks", task_routes_1.taskRoutes);
+exports.app.use("/admin", admin_routes_1.adminRoutes);
+exports.app.use(errorHandler_1.errorHandler);

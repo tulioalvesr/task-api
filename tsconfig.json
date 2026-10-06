@@ -2,11 +2,10 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "nodenext",
-    "outDir": "dist",
-    "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }
